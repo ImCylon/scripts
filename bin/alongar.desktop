@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Alongamento
-GenericName=Alongamento
-Exec= gwenview -sf /home/pictures/screenshot/alongamento/
-Categories=System;Monitor;
-Icon=utilities-system-monitor
