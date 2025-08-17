@@ -1,0 +1,3 @@
+#!/bin/sh
+cd ~/.local/bin
+./Awakened-PoE-Trade-3.25.101.AppImage
