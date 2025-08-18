@@ -1,0 +1,38 @@
+#!/bin/sh
+
+isObsRunning(){
+  dunstctl close-all &&
+  dunstctl set-paused true
+  contador=0
+  if [ $(pidof -x obs) ]
+  then
+    while pidof -x obs
+    do
+      echo "$((contador++))"
+      sleep 3
+    done
+    dunstctl set-paused false
+    dunstify -u critical "RESUME" "Notificação Ativa"
+  else
+    dunstctl set-paused false
+    dunstify -u critical "RESUME" "Notificação Ativa"
+  fi
+}
+
+contador=0
+id=$(date +%s) 
+
+if [ ! $(pidof -x obs) ]
+then
+  /usr/bin/obs &
+  while [ $contador  -le 9 ]
+  do
+    dunstify -u critical -r "$id" "Obs em Execução" "As notificações serão desativadas em $((10-contador)) segundos"
+    sleep 1
+    # contador=$((contador + 1))
+    $((contador++))
+  done
+  isObsRunning
+else
+  isObsRunning
+fi
