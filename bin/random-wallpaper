@@ -1,0 +1,11 @@
+#!/bin/bash
+
+WALLPAPER_DIR="$HOME/Pictures/wallpapers"
+
+TRANSITION="any"
+
+WALL=$(find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" -o -iname "*.gif" \) | shuf -n 1)
+
+swww img "$WALL" --transition-type $TRANSITION --transition-fps 60 --transition-step 255 --transition-duration 5
+
+matugen image $WALL 
